@@ -1,6 +1,17 @@
 
 import pandas as pd
 import streamlit as st
+import subprocess
+
+# Define the list of dependencies and their versions
+requirements = [
+    "openai",
+    "langchain",
+]
+
+# Install the dependencies using pip
+for requirement in requirements:
+    subprocess.check_call(["pip", "install", requirement])
 
 # Create a function to upload the CSV file
 def upload_file():
