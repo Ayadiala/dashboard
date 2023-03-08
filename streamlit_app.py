@@ -22,7 +22,8 @@ def upload_file():
 def main():
     # Ask the user to specify a variable
     # Define the OpenAI API key input field in the sidebar
-    st.title("Oivié-E a text to insights tool - like never before")
+    st.title("Oivié-E a text to insights tool ")
+    st.title("Like never before")
     st.write("Just load and ask your question about the data , any question you want ! ")
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
@@ -47,6 +48,7 @@ def main():
     if filename_suc and api_key_suc:
         st.title('Success ! CHAT with the CSV')
         st.write('Type a question that you want to know about the data! e.g : how many row in the file? ')
+        st.write('You can ask as much question as you want , the sky is the limit ')
         user_input = st.text_input('You:', key='input')
 
         if st.button('Send', key='send'):
