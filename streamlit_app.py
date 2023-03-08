@@ -24,6 +24,7 @@ def main():
     # Define the OpenAI API key input field in the sidebar
     st.title("Oivié-E a text to insights tool ")
     st.title("Like never before")
+    st.write("Become a data analyst not in 6 months ! not in 3 months ! but in the next minute ! ")
     st.write("Just load and ask your question about the data , any question you want ! ")
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
