@@ -49,7 +49,7 @@ def main():
     if filename_suc and api_key_suc:
         st.title('Success ! CHAT with the CSV')
         st.write('Type a question that you want to know about the data! e.g : how many row in the file? ')
-        st.write('You can ask as much question as you want , the sky is the limit ')
+        st.write('You can ask as much question as you want , the sky is the limit ( and the 200MB limit ) ')
         user_input = st.text_input('You:', key='input')
 
         if st.button('Send', key='send'):
