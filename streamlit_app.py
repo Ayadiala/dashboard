@@ -3,16 +3,6 @@ import pandas as pd
 import streamlit as st
 import subprocess
 import os
-
-# Define the list of dependencies and their versions
-requirements = [
-    "openai",
-    "langchain",
-]
-
-# Install the dependencies using pip
-for requirement in requirements:
-    subprocess.check_call(["pip", "install", requirement])
 from langchain.agents import create_csv_agent
 from langchain.llms import OpenAI
 import openai
