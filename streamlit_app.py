@@ -27,9 +27,13 @@ def upload_file():
 # Create the Streamlit app
 def main():
     # Ask the user to specify a variable
-    var_name = st.text_input("Enter variable name:")
-    os.environ['OPENAI_API_KEY'] = var_name
-    openai.api_key = os.environ["OPENAI_API_KEY"]
+    # Define the OpenAI API key input field in the sidebar
+    api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
+
+    # Initialize the OpenAI API with the user's inputted API key
+    if api_key:
+       openai.api_key = api_key
+       st.write("API key set successfully!")
     # Display the variable name
     st.title("Upload CSV file")
     filename = upload_file()
