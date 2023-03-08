@@ -41,13 +41,13 @@ def main():
     st.title('ChatBot')
     st.write('Type a message to get started!')
     user_input = st.text_input('You:', key='input')
-    results_st=agent.run(user_input)
-
+    
     if st.button('Send', key='send'):
         # Get the chatbot's response
-        response = results_st
+        
         agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
-        results_st=agent.run("user_input")
+        results_st=agent.run(user_input)
+        response = results_st
         # Display the chatbot's response in a text area
         st.text_area('ChatBot:', value=str(response), key='output', height=200)
 
