@@ -24,17 +24,19 @@ def main():
     # Define the OpenAI API key input field in the sidebar
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
-    # Initialize the OpenAI API with the user's inputted API key
-    if api_key:
-       openai.api_key = api_key
-       os.environ['OPENAI_API_KEY'] = api_key
-       st.write("API key set successfully!")
     # Display the variable name
     st.title("Upload CSV file")
     filename = upload_file()
     if filename is not None:
         st.write("File uploaded: ", filename)
     # Set the app header
+    
+    # Initialize the OpenAI API with the user's inputted API key
+    if api_key:
+       openai.api_key = api_key
+       os.environ['OPENAI_API_KEY'] = api_key
+       st.write("API key set successfully!")
+    
     agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
 
     st.title('ChatBot')
