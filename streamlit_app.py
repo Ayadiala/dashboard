@@ -46,12 +46,16 @@ def main():
         filename_suc = True
 
     # Initialize the OpenAI API with the user's inputted API key
-    api_key_suc = False
     if api_key:
         openai.api_key = api_key
         os.environ['OPENAI_API_KEY'] = api_key
-        st.write("API key set successfully!")
-        api_key_suc = True
+        try:
+            openai.Completion.create(engine="davinci", prompt="Hello world", max_tokens=5)
+            st.write("API key set successfully!")
+            api_key_suc = True
+        except openai.error.AuthenticationError:
+            st.write("Invalid API key. Please check your API key and try again.")
+            api_key_suc = False
 
     # Allow the user to interact with the CSV data through a chatbot
     if filename_suc and api_key_suc:
