@@ -33,6 +33,7 @@ def main():
     # Initialize the OpenAI API with the user's inputted API key
     if api_key:
        openai.api_key = api_key
+       os.environ['OPENAI_API_KEY'] = api_key
        st.write("API key set successfully!")
     # Display the variable name
     st.title("Upload CSV file")
