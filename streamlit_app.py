@@ -13,6 +13,10 @@ requirements = [
 # Install the dependencies using pip
 for requirement in requirements:
     subprocess.check_call(["pip", "install", requirement])
+from langchain.agents import create_csv_agent
+from langchain.llms import OpenAI
+import openai
+
 
 # Create a function to upload the CSV file
 def upload_file():
