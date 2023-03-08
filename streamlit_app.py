@@ -37,7 +37,6 @@ def main():
        os.environ['OPENAI_API_KEY'] = api_key
        st.write("API key set successfully!")
     
-    agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
 
     st.title('ChatBot')
     st.write('Type a message to get started!')
@@ -47,6 +46,7 @@ def main():
     if st.button('Send', key='send'):
         # Get the chatbot's response
         response = results_st
+        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
 
         # Display the chatbot's response in a text area
         st.text_area('ChatBot:', value=str(response), key='output', height=200)
