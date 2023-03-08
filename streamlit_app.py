@@ -14,7 +14,7 @@ def upload_file():
     if uploaded_file is not None:
         # Save the filename in a variable
         filename = uploaded_file.name
-        return filename
+        return uploaded_file
     else:
         return None
 
@@ -27,8 +27,7 @@ def main():
     # Display the variable name
     st.title("Upload CSV file")
     filename = upload_file()
-    if filename is not None:
-        st.write("File uploaded: ", filename)
+
     # Set the app header
     
     # Initialize the OpenAI API with the user's inputted API key
@@ -44,8 +43,9 @@ def main():
     
     if st.button('Send', key='send'):
         # Get the chatbot's response
-        
+        st.write('start working!')
         agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+        st.write('contunie working!')
         results_st=agent.run(user_input)
         response = results_st
         # Display the chatbot's response in a text area
