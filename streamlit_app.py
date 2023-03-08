@@ -22,10 +22,12 @@ def upload_file():
 def main():
     # Ask the user to specify a variable
     # Define the OpenAI API key input field in the sidebar
+    st.title("Oivié-E a text to insights tool - like never before")
+    st.write("Just load and ask your question about the data , any question you want ! ")
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
     # Display the variable name
-    st.title("Upload CSV file")
+    st.write("Upload CSV file")
     
     filename = upload_file()
     filename_suc = False
