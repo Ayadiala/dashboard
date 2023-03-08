@@ -40,7 +40,6 @@ def main():
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
     # Allow the user to upload a CSV file
-    st.write("Upload CSV file")
     filename = upload_file()
     filename_suc = False
     if filename:
