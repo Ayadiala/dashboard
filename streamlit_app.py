@@ -42,9 +42,6 @@ def main():
        api_key_suc = True
     
 
-    st.title('ChatBot')
-    st.write('Type a message to get started!')
-    user_input = st.text_input('You:', key='input')
     if filename_suc and api_key_suc:
         st.title('Success ! CHAT with the CSV')
         st.write('Type a question that you want to know about the data! e.g : how many row in the file? ')
