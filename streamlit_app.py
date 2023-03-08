@@ -26,30 +26,38 @@ def main():
 
     # Display the variable name
     st.title("Upload CSV file")
+    
     filename = upload_file()
+    filename_suc = False
+    if filename:
+        filename_suc = True
 
     # Set the app header
-    
+    api_key_suc = False
     # Initialize the OpenAI API with the user's inputted API key
     if api_key:
        openai.api_key = api_key
        os.environ['OPENAI_API_KEY'] = api_key
        st.write("API key set successfully!")
+       api_key_suc = True
     
 
     st.title('ChatBot')
     st.write('Type a message to get started!')
     user_input = st.text_input('You:', key='input')
-    
-    if st.button('Send', key='send'):
-        # Get the chatbot's response
-        st.write('start working!')
-        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
-        st.write('contunie working!')
-        results_st=agent.run(user_input)
-        response = results_st
-        # Display the chatbot's response in a text area
-        st.text_area('ChatBot:', value=str(response), key='output', height=200)
+    if filename_suc and api_key_suc:
+        st.title('Success ! CHAT with the CSV')
+        st.write('Type a question that you want to know about the data! e.g : how many row in the file? ')
+        user_input = st.text_input('You:', key='input')
+
+        if st.button('Send', key='send'):
+
+            # Get the chatbot's response
+            agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+            results_st=agent.run(user_input)
+            response = results_st
+            # Display the chatbot's response in a text area
+            st.text_area('ChatBot:', value=str(response), key='output', height=200)
 
 
 if __name__ == "__main__":
