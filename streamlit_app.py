@@ -47,7 +47,7 @@ def main():
     user_input = st.text_input('You:', key='input')
     results_st=agent.run("user_input")
 
-        if st.button('Send', key='send'):
+    if st.button('Send', key='send'):
         # Get the chatbot's response
         response = results_st
 
