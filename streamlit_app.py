@@ -59,8 +59,8 @@ def main():
 
     # Allow the user to interact with the CSV data through a chatbot
     if filename_suc and api_key_suc:
-        st.title('Success ! CHAT with the CSV')
-        st.write('Type a question that you want to know about the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
+        st.title('Success ! You can CHAT with the CSV')
+        st.write('Type a question that you want to know from the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
         st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')
         user_input = st.text_input('You:', key='input')
 
