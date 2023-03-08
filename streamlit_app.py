@@ -54,7 +54,7 @@ def main():
             st.write("API key set successfully!")
             api_key_suc = True
         except openai.error.AuthenticationError:
-            st.write("Invalid API key. Please check your API key and try again.")
+            st.write("<b>Invalid API key. Please check your API key and try again.</b>", unsafe_allow_html=True)
             api_key_suc = False
 
     # Allow the user to interact with the CSV data through a chatbot
