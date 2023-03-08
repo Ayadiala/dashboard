@@ -39,6 +39,21 @@ def main():
     filename = upload_file()
     if filename is not None:
         st.write("File uploaded: ", filename)
+    # Set the app header
+    agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+
+    st.title('ChatBot')
+    st.write('Type a message to get started!')
+    user_input = st.text_input('You:', key='input')
+    results_st=agent.run("user_input")
+
+        if st.button('Send', key='send'):
+        # Get the chatbot's response
+        response = results_st
+
+        # Display the chatbot's response in a text area
+        st.text_area('ChatBot:', value=str(response), key='output', height=200)
+
 
 if __name__ == "__main__":
     main()
