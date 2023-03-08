@@ -32,10 +32,10 @@ def upload_file():
 # Define the Streamlit app
 def main():
     # Ask the user to specify an OpenAI API key
-    st.set_page_config(page_title='Oivié-E', page_icon=':bar_chart:', layout='wide')
-    st.title("Oivié-E: Your Instant Text-to-Insights Tool")
+    st.set_page_config(page_title='Inisght-E', page_icon=':bar_chart:', layout='wide')
+    st.title("Inisght-E: Your Instant Text-to-Insights Tool")
     st.title("Get data-driven insights like never before!")
-    st.write("With Oivié-E, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
+    st.write("With Inisght-E, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
     st.write("Just load your CSV and ask your question about the data, any question you want! ")
     api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
