@@ -2,6 +2,7 @@
 import pandas as pd
 import streamlit as st
 import subprocess
+import os
 
 # Define the list of dependencies and their versions
 requirements = [
@@ -25,6 +26,11 @@ def upload_file():
 
 # Create the Streamlit app
 def main():
+    # Ask the user to specify a variable
+    var_name = st.text_input("Enter variable name:")
+    os.environ['OPENAI_API_KEY'] = var_name
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+    # Display the variable name
     st.title("Upload CSV file")
     filename = upload_file()
     if filename is not None:
