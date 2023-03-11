@@ -7,6 +7,8 @@ from langchain.llms import OpenAI
 import openai
 # streamlit_app.py
 
+
+
 import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import storage
@@ -57,7 +59,7 @@ def upload_file():
 
 # Define the Streamlit app
 def main():
-    api_key = read_file(bucket_name, file_path)
+    api_key = st.secrets.db_credentials.password
     # Ask the user to specify an OpenAI API key
     st.set_page_config(page_title='Inisght-E', page_icon=':bar_chart:', layout='wide')
     st.title("Inisght-E: Your Instant Text-to-Insights Tool")
