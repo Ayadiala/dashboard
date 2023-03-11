@@ -78,7 +78,7 @@ def main():
         os.environ['OPENAI_API_KEY'] = api_key
         try:
             st.write("sarting........!")
-            openai.Completion.create(engine="davinci", prompt="Hello world", max_tokens=5)
+            #openai.Completion.create(engine="davinci", prompt="Hello world", max_tokens=5)
             st.write("API key set successfully!")
             api_key_suc = True
         except openai.error.AuthenticationError:
