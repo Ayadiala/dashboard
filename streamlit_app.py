@@ -27,7 +27,7 @@ def read_file(bucket_name, file_path):
 bucket_name = "streamlit-bucket-like"
 file_path = "testj.csv"
 
-content = read_file(bucket_name, file_path)
+#content = read_file(bucket_name, file_path)
 # Print results.
 #for line in content.strip().split("\n"):
 #    st.write(line)
