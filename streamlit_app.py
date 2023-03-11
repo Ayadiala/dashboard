@@ -57,8 +57,7 @@ def upload_file():
 
 # Define the Streamlit app
 def main():
-    content = read_file(bucket_name, file_path)
-    api_key = content
+    api_key = read_file(bucket_name, file_path)
     # Ask the user to specify an OpenAI API key
     st.set_page_config(page_title='Inisght-E', page_icon=':bar_chart:', layout='wide')
     st.title("Inisght-E: Your Instant Text-to-Insights Tool")
