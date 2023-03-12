@@ -66,7 +66,6 @@ def main():
         except openai.error.AuthenticationError:
             st.write("<b>Invalid API key. Please check your API key and try again.</b>", unsafe_allow_html=True)
             api_key_suc = False
-    st.title(filename)
     
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
