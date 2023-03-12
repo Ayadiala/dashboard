@@ -78,12 +78,13 @@ def main():
         Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
         my_bar.progress(percent_complete + 20, text=progress_text)
         percent_complete = percent_complete + 20
-        st.text(Example_results)
+        
         my_bar.progress(percent_complete + 20, text=progress_text)
         percent_complete = percent_complete + 20
         
         st.title('Success ! You can CHAT with the CSV')
-        st.write('Type a question that you want to know from the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
+        st.write('Type a question that you want to know from the data!  <i>below some exmaple based on your data</i> ', unsafe_allow_html=True)
+        st.text(Example_results)
         st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')        
         user_input = st.text_input('You:', key='input')
         if st.button('Show me the Magic!', key='send'):
