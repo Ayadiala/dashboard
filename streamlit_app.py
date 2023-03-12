@@ -50,7 +50,6 @@ def main():
 
     # Allow the user to upload a CSV file
     filename = upload_file()
-    filename1 = filename
     filename_suc = False
     if filename:
         filename_suc = True
@@ -70,18 +69,21 @@ def main():
     
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
-    if filename1 is not None:
+    if filename is not None:
         try:
-            df1 = pd.read_csv(filename1)
-            check_num_columns(df1)
+            df = pd.read_csv(filename)
+            check_num_columns(df)
+            filename_check = True
         except ValueError as e:
             st.error(str(e))
+            filename_check = False
         except Exception as e:
-            st.error("Unable to load file. Please check the file format and try again,<b> it should be less than 25 columns.</b>")
+            st.error("Unable to load file. Please check the file format and try again, it should be less than 25 columns ! ")
+            filename_check = False
 
  
     # Allow the user to interact with the CSV data through a chatbot
-    if filename_suc and api_key_suc:
+    if filename_suc and api_key_suc and  filename_check:
         # Define the progress message to display to the user
         progress_text = "Operation in progress. Please wait."
 
@@ -92,7 +94,7 @@ def main():
         percent_complete = 0
 
         # Create an agent object that uses an OpenAI model and a file name
-        agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df1, verbose=True)
+        agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=True)
 
         # Increment the progress bar by 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
