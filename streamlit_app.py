@@ -161,7 +161,7 @@ def main():
                 critique_request='The model should only talk about ethical and legal things.')
             critique = parse_critique(
                 output_string=raw_critique).strip()
-            st.write('critique')
+            st.write(critique)
 
 
 if __name__ == "__main__":
