@@ -153,7 +153,7 @@ def main():
             results_st = agent.run(user_input)
             response = results_st
             # Display the chatbot's response in a text area
-            st.text_area('ChatBot:', value=str(response), key='output', height=200)
+            st.text_area('InsightEngine Response:', value=str(response), key='output', height=200)
             
             raw_critique = critique_chain.run(
                 input_prompt=user_input,
@@ -161,7 +161,7 @@ def main():
                 critique_request='The model should only talk about ethical and legal things.')
             critique = parse_critique(
                 output_string=raw_critique).strip()
-            st.write(critique)
+            st.markdown(f"**Ethical critique about the answer:** {critique}")
 
 
 if __name__ == "__main__":
