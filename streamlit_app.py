@@ -59,7 +59,7 @@ def main():
         except openai.error.AuthenticationError:
             st.write("<b>Invalid API key. Please check your API key and try again.</b>", unsafe_allow_html=True)
             api_key_suc = False
-            
+    st.title(filename)
     df = pd.read_csv(filename)
     df_size = True
     if df.shape[1]>25:
