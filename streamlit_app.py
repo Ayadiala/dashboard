@@ -62,16 +62,30 @@ def main():
 
     # Allow the user to interact with the CSV data through a chatbot
     if filename_suc and api_key_suc:
+        progress_text = "Operation in progress. Please wait."
+        my_bar = st.progress(0, text=progress_text)
+        percent_complete = 0
+        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+        
+        my_bar.progress(percent_complete + 1, text=progress_text)
+        percent_complete = percent_complete + 1
+        results_st = agent.run('what are the columns name in the data?')
+        my_bar.progress(percent_complete + 1, text=progress_text)
+        percent_complete = percent_complete + 1
+        llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+        percent_complete = percent_complete + 1
+        Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
+        my_bar.progress(percent_complete + 1, text=progress_text)
+        percent_complete = percent_complete + 1
+        st.text(Example_results)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+        percent_complete = percent_complete + 1
+        
         st.title('Success ! You can CHAT with the CSV')
         st.write('Type a question that you want to know from the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
-        st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')
+        st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')        
         user_input = st.text_input('You:', key='input')
-        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
-        results_st = agent.run('what are the columns name in the data?')
-        llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
-        Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
-        st.text(Example_results)
-
         if st.button('Show me the Magic!', key='send'):
             # Use the chatbot to process the user's input
             results_st = agent.run(user_input)
