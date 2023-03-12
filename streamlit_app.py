@@ -62,28 +62,57 @@ def main():
 
     # Allow the user to interact with the CSV data through a chatbot
     if filename_suc and api_key_suc:
+        # Define the progress message to display to the user
         progress_text = "Operation in progress. Please wait."
+
+        # Create a progress bar object with 0% completion and the progress message
         my_bar = st.progress(0, text=progress_text)
+
+        # Initialize the percent_complete variable to 0
         percent_complete = 0
+
+        # Create an agent object that uses an OpenAI model and a file name
         agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
-        
+
+        # Increment the progress bar by 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
+
+        # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
+
+        # Run the agent on a specific question and store the results in a variable
         results_st = agent.run('what are the columns name in the data?')
+
+        # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
+
+        # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
+
+        # Create another OpenAI object using a different model name
         llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
+
+        # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
+
+        # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
+
+        # Ask a question that concatenates the previous results and store the output in a variable
         Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
+
+        # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
+
+        # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
-        
+
+        # Increment the progress bar one last time
         my_bar.progress(percent_complete + 20, text=progress_text)
-        percent_complete = percent_complete + 20
+
         
         st.title('Success ! You can CHAT with the CSV')
-        st.write('Type a question that you want to know from the data!  <i>below some exmaple based on your data</i> ', unsafe_allow_html=True)
+        st.write('Type a question that you want to know from the data!  <i>below some exmaples based on your data</i> ', unsafe_allow_html=True)
         st.text(Example_results)
         st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')        
         user_input = st.text_input('You:', key='input')
