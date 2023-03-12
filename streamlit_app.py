@@ -69,7 +69,7 @@ def main():
 
         if st.button('Send', key='send'):
             # Use the chatbot to process the user's input
-            agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+            agent = create_csv_agent(OpenAI(model_name="gpt-3.5-turbo",temperature=0), filename, verbose=True)
             results_st = agent.run(user_input)
             response = results_st
             # Display the chatbot's response in a text area
