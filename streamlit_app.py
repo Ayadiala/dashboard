@@ -59,9 +59,14 @@ def main():
         except openai.error.AuthenticationError:
             st.write("<b>Invalid API key. Please check your API key and try again.</b>", unsafe_allow_html=True)
             api_key_suc = False
-
+            
+    df = pd.read_csv(filename)
+    df_size = True
+    if df.shape[1]>25:
+        st.write("<b>You have too many columns please reduce the number of columns, the maximum number of columns allowed is 24 </b>", unsafe_allow_html=True)
+        df_size = False
     # Allow the user to interact with the CSV data through a chatbot
-    if filename_suc and api_key_suc:
+    if filename_suc and api_key_suc and df_size:
         # Define the progress message to display to the user
         progress_text = "Operation in progress. Please wait."
 
