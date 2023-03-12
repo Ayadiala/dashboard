@@ -73,10 +73,10 @@ def main():
     if filename1 is not None:
         print('test')
         try:
-            df1 = pd.read_csv(filename1.name)
-#            check_num_columns(df1)
-#        except ValueError as e:
-#            st.error(str(e))
+            df1 = pd.read_csv(filename1)
+            check_num_columns(df1)
+        except ValueError as e:
+            st.error(str(e))
         except Exception as e:
             st.error("Unable to load file. Please check the file format and try again,<b> it should be less than 25 columns.</b>")
 
