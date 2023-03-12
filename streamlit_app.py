@@ -70,10 +70,10 @@ def main():
     
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
-    if filename is not None:
+    if filename1 is not None:
         print('test')
         try:
-            df1 = pd.read_csv(filename)
+            df1 = pd.read_csv(filename1)
 #            check_num_columns(df1)
 #        except ValueError as e:
 #            st.error(str(e))
