@@ -127,7 +127,8 @@ def main():
 
         # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
-        critique_chain = LLMChain(llm=llm, prompt=CRITIQUE_PROMPT)
+        llm1 = OpenAI(temperature=0)
+        critique_chain = LLMChain(llm=llm1, prompt=CRITIQUE_PROMPT)
         # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
 
