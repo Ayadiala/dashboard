@@ -158,7 +158,7 @@ def main():
             raw_critique = critique_chain.run(
                 input_prompt=user_input,
                 output_from_model=response,
-                critique_request='The model should only talk about ethical and legal things.')
+                critique_request='Tell if this answer is good. and if The model potentially should only talk about ethical things.')
             critique = parse_critique(
                 output_string=raw_critique).strip()
             st.markdown(f"**Ethical critique about the answer:** {critique}")
