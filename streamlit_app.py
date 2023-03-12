@@ -1,13 +1,14 @@
-import pandas as pd
-import streamlit as st
-import subprocess
-import os
-from langchain.agents import create_pandas_dataframe_agent
-from langchain.llms import OpenAI
-from langchain.chains.constitutional_ai.prompts import CRITIQUE_PROMPT, REVISION_PROMPT
-from langchain.chains.llm import LLMChain
+import pandas as pd  # Import the pandas library for data manipulation
+import streamlit as st  # Import the Streamlit library for building interactive apps
+import subprocess  # Import the subprocess library for running shell commands
+import os  # Import the os library for interacting with the operating system
+from langchain.agents import create_pandas_dataframe_agent  # Import a function from the langchain.agents module
+from langchain.llms import OpenAI  # Import the OpenAI class from the langchain.llms module
+from langchain.chains.constitutional_ai.prompts import CRITIQUE_PROMPT, REVISION_PROMPT  # Import two prompts from the langchain.chains.constitutional_ai.prompts module
+from langchain.chains.llm import LLMChain  # Import the LLMChain class from the langchain.chains.llm module
 
-import openai
+import openai  # Import the OpenAI library, which is not used in this code snippet
+
 
 
 
