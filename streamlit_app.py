@@ -17,6 +17,13 @@ COLORS = {
     'text': '#222222',
 }
 
+# Define a function to check the number of columns
+def check_num_columns(dataframe):
+    num_cols = len(dataframe.columns)
+    if num_cols > 25:
+        raise ValueError(f"Error: The number of columns in the file is {num_cols}. It should be less than 25.")
+    else:
+        st.success(f"The number of columns in the file is {num_cols}. It is less than 25.")
 
 
 # Function to upload a CSV file
@@ -60,13 +67,21 @@ def main():
             st.write("<b>Invalid API key. Please check your API key and try again.</b>", unsafe_allow_html=True)
             api_key_suc = False
     st.title(filename)
-    df = pd.read_csv(filename)
-    df_size = True
-    if df.shape[1]>25:
-        st.write("<b>You have too many columns please reduce the number of columns, the maximum number of columns allowed is 24 </b>", unsafe_allow_html=True)
-        df_size = False
+    
+    
+    # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
+    if filename is not None:
+        try:
+            df = pd.read_csv(filename)
+            check_num_columns(df)
+        except ValueError as e:
+            st.error(str(e))
+        except Exception as e:
+            st.error("Unable to load file. Please check the file format and try again,<b> it should be less than 25 columns.</b>")
+
+ 
     # Allow the user to interact with the CSV data through a chatbot
-    if filename_suc and api_key_suc and df_size:
+    if filename_suc and api_key_suc:
         # Define the progress message to display to the user
         progress_text = "Operation in progress. Please wait."
 
