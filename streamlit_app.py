@@ -153,7 +153,7 @@ def main():
             results_st = agent.run(user_input)
             response = results_st
             # Display the chatbot's response in a text area
-            st.text_area('InsightEngine Response:', value=str(response), key='output', height=200)
+            st.text_area('InsightEngine Response:', value=str(response), key='output')
             
             raw_critique = critique_chain.run(
                 input_prompt=user_input,
