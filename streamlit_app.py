@@ -70,7 +70,7 @@ def main():
     
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
-#    if filename is not None:
+    if filename is not None:
 #        try:
 #            df = pd.read_csv(filename)
 #            check_num_columns(df)
@@ -92,7 +92,7 @@ def main():
         percent_complete = 0
 
         # Create an agent object that uses an OpenAI model and a file name
-        agent = create_csv_agent(OpenAI(temperature=0), filename1, verbose=True)
+        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
 
         # Increment the progress bar by 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
