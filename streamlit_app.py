@@ -74,9 +74,9 @@ def main():
         print('test')
         try:
             df1 = pd.read_csv(filename)
-            check_num_columns(df1)
-        except ValueError as e:
-            st.error(str(e))
+#            check_num_columns(df1)
+#        except ValueError as e:
+#            st.error(str(e))
         except Exception as e:
             st.error("Unable to load file. Please check the file format and try again,<b> it should be less than 25 columns.</b>")
 
