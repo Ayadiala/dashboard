@@ -67,20 +67,20 @@ def main():
         percent_complete = 0
         agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
         
-        my_bar.progress(percent_complete + 1, text=progress_text)
-        percent_complete = percent_complete + 1
+        my_bar.progress(percent_complete + 20, text=progress_text)
+        percent_complete = percent_complete + 20
         results_st = agent.run('what are the columns name in the data?')
-        my_bar.progress(percent_complete + 1, text=progress_text)
-        percent_complete = percent_complete + 1
+        my_bar.progress(percent_complete + 20, text=progress_text)
+        percent_complete = percent_complete + 20
         llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
-        my_bar.progress(percent_complete + 1, text=progress_text)
-        percent_complete = percent_complete + 1
+        my_bar.progress(percent_complete + 20, text=progress_text)
+        percent_complete = percent_complete + 20
         Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
-        my_bar.progress(percent_complete + 1, text=progress_text)
-        percent_complete = percent_complete + 1
+        my_bar.progress(percent_complete + 20, text=progress_text)
+        percent_complete = percent_complete + 20
         st.text(Example_results)
-        my_bar.progress(percent_complete + 1, text=progress_text)
-        percent_complete = percent_complete + 1
+        my_bar.progress(percent_complete + 20, text=progress_text)
+        percent_complete = percent_complete + 20
         
         st.title('Success ! You can CHAT with the CSV')
         st.write('Type a question that you want to know from the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
