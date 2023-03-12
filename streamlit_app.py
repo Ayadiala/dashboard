@@ -39,7 +39,13 @@ def upload_file():
     else:
         return None
 
-
+def parse_critique(output_string: str) -> str:
+        if "Revision request:" not in output_string:
+            return output_string
+        output_string = output_string.split("Revision request:")[0]
+        if "\n\n" in output_string:
+            output_string = output_string.split("\n\n")[0]
+        return output_string
 # Define the Streamlit app
 def main():
     api_key = st.secrets.db_credentials.password
