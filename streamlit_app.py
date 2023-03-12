@@ -50,6 +50,7 @@ def main():
 
     # Allow the user to upload a CSV file
     filename = upload_file()
+    filename1 = filename
     filename_suc = False
     if filename:
         filename_suc = True
@@ -91,7 +92,7 @@ def main():
         percent_complete = 0
 
         # Create an agent object that uses an OpenAI model and a file name
-        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+        agent = create_csv_agent(OpenAI(temperature=0), filename1, verbose=True)
 
         # Increment the progress bar by 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
