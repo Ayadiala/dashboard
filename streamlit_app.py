@@ -71,7 +71,7 @@ def main():
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
     if filename is not None:
-        print('test'
+        print('test')
 #        try:
 #            df = pd.read_csv(filename)
 #            check_num_columns(df)
