@@ -66,15 +66,14 @@ def main():
         st.write('Type a question that you want to know from the data! e.g : <i>how many rows in the file?</i> ', unsafe_allow_html=True)
         st.write('You can ask as many questions as you want; the sky is the limit (and the 200MB limit) ')
         user_input = st.text_input('You:', key='input')
+        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+        results_st = agent.run('what are the columns name in the data?')
+        llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
+        Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
+        st.text(Example_results)
 
         if st.button('Show me the Magic!', key='send'):
             # Use the chatbot to process the user's input
-            agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
-            results_st = agent.run('what are the columns name in the data?')
-            llm = OpenAI(model_name="gpt-3.5-turbo", n=2)
-            Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
-            st.text(Example_results)
-
             results_st = agent.run(user_input)
             response = results_st
             # Display the chatbot's response in a text area
