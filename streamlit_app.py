@@ -71,7 +71,6 @@ def main():
     
     # If a file is uploaded, read it as a Pandas dataframe and check the number of columns
     if filename1 is not None:
-        print('test')
         try:
             df1 = pd.read_csv(filename1)
             check_num_columns(df1)
@@ -79,7 +78,6 @@ def main():
             st.error(str(e))
         except Exception as e:
             st.error("Unable to load file. Please check the file format and try again,<b> it should be less than 25 columns.</b>")
-    uploaded_file.seek(0,0)
 
  
     # Allow the user to interact with the CSV data through a chatbot
