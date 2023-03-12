@@ -4,6 +4,8 @@ import subprocess
 import os
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
+from langchain.chains.constitutional_ai.prompts import CRITIQUE_PROMPT, REVISION_PROMPT
+
 import openai
 
 
@@ -125,7 +127,7 @@ def main():
 
         # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
-
+        critique_chain = LLMChain(llm=llm, prompt=CRITIQUE_PROMPT)
         # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
 
@@ -144,6 +146,14 @@ def main():
             response = results_st
             # Display the chatbot's response in a text area
             st.text_area('ChatBot:', value=str(response), key='output', height=200)
+            
+            raw_critique = critique_chain.run(
+                input_prompt=user_input,
+                output_from_model=response,
+                critique_request='The model should only talk about ethical and legal things.')
+            critique = parse_critique(
+                output_string=raw_critique).strip()
+            st.write('critique')
 
 
 if __name__ == "__main__":
