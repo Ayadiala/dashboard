@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import subprocess
 import os
-from langchain.agents import create_csv_agent
+from langchain.agents import create_pandas_dataframe_agent
 from langchain.llms import OpenAI
 import openai
 
@@ -92,7 +92,7 @@ def main():
         percent_complete = 0
 
         # Create an agent object that uses an OpenAI model and a file name
-        agent = create_csv_agent(OpenAI(temperature=0), filename, verbose=True)
+        agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df1, verbose=True)
 
         # Increment the progress bar by 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
