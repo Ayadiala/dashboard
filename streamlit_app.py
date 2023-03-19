@@ -63,12 +63,16 @@ def main():
     st.write("With InsightEngine, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
     st.write("Just load your CSV and ask your question about the data, any question you want! ")
     
-    st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
+    with st.container():
+        st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
+        st.write("")
 
-    sample_data_url = "https://github.com/Ayadiala/dashboard/edit/main/sample_data.csv"
-    if st.button("Download Sample Dataset"):
-        download_sample_data(sample_data_url)
-        st.download_button("Download Sample Dataset", data="sample_data.csv", file_name="sample_data.csv")
+        sample_data_url = "https://github.com/your_username/your_repo/raw/main/sample_data.csv"
+        if st.button("Download Sample Dataset"):
+            download_sample_data(sample_data_url)
+            st.download_button("Download Sample Dataset", data="sample_data.csv", file_name="sample_data.csv")
+
+        st.write("")
 
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
