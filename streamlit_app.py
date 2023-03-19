@@ -153,16 +153,32 @@ def main():
             # Use the chatbot to process the user's input
             results_st = agent.run(user_input)
             response = results_st
+
             # Display the chatbot's response in a text area
             st.text_area('InsightEngine Response:', value=str(response), key='output')
-            
+
+            # Progress bar for the critique part
+            critique_progress_text = "Critique in progress. Please wait."
+            critique_bar = st.progress(0, text=critique_progress_text)
+            critique_percent_complete = 0
+
             raw_critique = critique_chain.run(
                 input_prompt=user_input,
                 output_from_model=response,
-                critique_request='Tell if this answer is good. and if The model potentially should only talk about ethical things.')
-            critique = parse_critique(
-                output_string=raw_critique).strip()
+                critique_request='Tell if this answer is good. and if The model potentially should only talk about ethical things.'
+            )
+
+            critique_percent_complete += 50
+            critique_bar.progress(critique_percent_complete, text=critique_progress_text)
+
+            critique = parse_critique(output_string=raw_critique).strip()
+
+            critique_percent_complete += 50
+            critique_bar.progress(critique_percent_complete, text=critique_progress_text)
+
             st.markdown(f"**Ethical critique about the answer:** {critique}")
+
+
 
 
 if __name__ == "__main__":
