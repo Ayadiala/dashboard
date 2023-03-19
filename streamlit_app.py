@@ -49,9 +49,12 @@ def parse_critique(output_string: str) -> str:
         return output_string
     
     
-def download_sample_data(url):
-    response = requests.get(url)
-    open("sample_data.csv", "wb").write(response.content)
+def open_url(url, text):
+    st.write(
+        f'<a href="{url}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: white; display: inline-block; padding: 0.25rem 1rem; margin: 0.25rem; border-radius: 0.25rem; background-color: {COLORS["primary"]}; font-weight: 500;">{text}</a>',
+        unsafe_allow_html=True,
+    )
+    
 
 # Define the Streamlit app
 def main():
@@ -71,16 +74,11 @@ def main():
                 st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
                 st.write("")
 
-                # Replace this URL with the actual URL of your sample dataset in the GitHub repo
+                # Replace this URL with the actual URL of your sample dataset
                 sample_data_url = "https://storage.googleapis.com/website-final/sample_data.csv"
 
-                response = requests.get(sample_data_url)
+                open_url(sample_data_url, "Download Titanic Sample Dataset")
 
-                if response.status_code == 200:
-                    st.download_button("Download Titanic Sample Dataset", data=response.content, file_name="sample_data.csv", mime="text/csv")
-                else:
-                    st.write("Error downloading the sample dataset. Please try again later.")
-                
                 st.write("")
 
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
