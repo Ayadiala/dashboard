@@ -65,16 +65,18 @@ def main():
     
         
     with st.container():
-        st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
-        st.write("")
+        col1, col2, col3 = st.columns([1, 3, 1])
+        with col2:
+            with st.expander("Sample Dataset", expanded=True):
+                st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
+                st.write("")
 
-        # Replace this URL with the actual URL of your sample dataset in the GitHub repo
-        sample_data_url = "https://storage.googleapis.com/website-final/sample_data.csv"
+                # Replace this URL with the actual URL of your sample dataset in the GitHub repo
+                sample_data_url = "https://storage.googleapis.com/website-final/sample_data.csv"
 
-        if st.button("Download Sample Dataset"):
-            st.download_button("Download Sample Dataset", data=sample_data_url, file_name="sample_data.csv", mime="text/csv")
+                st.download_button("Download Titanic Sample Dataset", data=sample_data_url, file_name="sample_data.csv", mime="text/csv")
 
-        st.write("")
+                st.write("")
 
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
