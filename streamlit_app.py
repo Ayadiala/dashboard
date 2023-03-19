@@ -63,8 +63,6 @@ def main():
     st.write("With InsightEngine, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
     st.write("Just load your CSV and ask your question about the data, any question you want! ")
     
-
-        
         
     with st.container():
         st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
@@ -74,8 +72,7 @@ def main():
         sample_data_url = "https://storage.googleapis.com/website-final/sample_data.csv"
 
         if st.button("Download Sample Dataset"):
-            response = requests.get(sample_data_url)
-            st.download_button("Download Sample Dataset", data=response.content, file_name="sample_data.csv", mime="text/csv")
+            st.download_button("Download Sample Dataset", data=sample_data_url, file_name="sample_data.csv", mime="text/csv")
 
         st.write("")
 
