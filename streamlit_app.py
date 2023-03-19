@@ -74,8 +74,13 @@ def main():
                 # Replace this URL with the actual URL of your sample dataset in the GitHub repo
                 sample_data_url = "https://storage.googleapis.com/website-final/sample_data.csv"
 
-                st.download_button("Download Titanic Sample Dataset", data=sample_data_url, file_name="sample_data.csv", mime="text/csv")
+                response = requests.get(sample_data_url)
 
+                if response.status_code == 200:
+                    st.download_button("Download Titanic Sample Dataset", data=response.content, file_name="sample_data.csv", mime="text/csv")
+                else:
+                    st.write("Error downloading the sample dataset. Please try again later.")
+                
                 st.write("")
 
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
