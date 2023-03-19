@@ -129,10 +129,10 @@ def main():
 
         # Update the percent_complete variable to reflect the updated progress
         percent_complete = percent_complete + 20
-
+        st.write('Done loading the model ')        
         # Ask a question that concatenates the previous results and store the output in a variable
         Example_results = llm("What are 5 diversified smart non-unique data analysis questions we can ask about a data with those columns; results_st "+results_st )
-
+        
         # Increment the progress bar by another 20% and update the progress message
         my_bar.progress(percent_complete + 20, text=progress_text)
 
