@@ -47,6 +47,12 @@ def parse_critique(output_string: str) -> str:
         if "\n\n" in output_string:
             output_string = output_string.split("\n\n")[0]
         return output_string
+    
+    
+def download_sample_data(url):
+    response = requests.get(url)
+    open("sample_data.csv", "wb").write(response.content)
+
 # Define the Streamlit app
 def main():
     api_key = st.secrets.db_credentials.password
@@ -56,6 +62,14 @@ def main():
     st.title("Get data-driven insights like never before!")
     st.write("With InsightEngine, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
     st.write("Just load your CSV and ask your question about the data, any question you want! ")
+    
+    st.write("If you don't have a dataset, you can download a sample dataset using the button below:")
+
+    sample_data_url = "https://github.com/Ayadiala/dashboard/edit/main/sample_data.csv"
+    if st.button("Download Sample Dataset"):
+        download_sample_data(sample_data_url)
+        st.download_button("Download Sample Dataset", data="sample_data.csv", file_name="sample_data.csv")
+
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
     # Allow the user to upload a CSV file
