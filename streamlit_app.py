@@ -1,35 +1,25 @@
-import pandas as pd
-import streamlit as st
-import subprocess
-import os
-from langchain.agents import create_pandas_dataframe_agent
-from langchain.llms import OpenAI
-from langchain.chains.constitutional_ai.prompts import CRITIQUE_PROMPT, REVISION_PROMPT
-from langchain.chains.llm import LLMChain
-import openai
+import pandas as pd  # Import the pandas library for data manipulation
+import streamlit as st  # Import the Streamlit library for building interactive apps
+import subprocess  # Import the subprocess library for running shell commands
+import os  # Import the os library for interacting with the operating system
+from langchain.agents import create_pandas_dataframe_agent  # Import a function from the langchain.agents module
+from langchain.llms import OpenAI  # Import the OpenAI class from the langchain.llms module
+from langchain.chains.constitutional_ai.prompts import CRITIQUE_PROMPT, REVISION_PROMPT  # Import two prompts from the langchain.chains.constitutional_ai.prompts module
+from langchain.chains.llm import LLMChain  # Import the LLMChain class from the langchain.chains.llm module
 
-# Custom CSS for styling
-st.markdown("""
-<style>
-    .title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #2f4f4f;
-        margin-bottom: 1rem;
-    }
-    .subtitle {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #708090;
-        margin-bottom: 2rem;
-    }
-    .instruction {
-        font-size: 1.1rem;
-        color: #222222;
-        margin-bottom: 1.5rem;
-    }
-</style>
-""", unsafe_allow_html=True)
+import openai  # Import the OpenAI library, which is not used in this code snippet
+
+
+
+
+# Define some style elements for the app
+SIDEBAR_WIDTH = 300
+COLORS = {
+    'primary': '#2f4f4f',
+    'secondary': '#708090',
+    'background': '#f5f5f5',
+    'text': '#222222',
+}
 
 # Define a function to check the number of columns
 def check_num_columns(dataframe):
@@ -42,8 +32,9 @@ def check_num_columns(dataframe):
 
 # Function to upload a CSV file
 def upload_file():
-    uploaded_file = st.file_uploader("Choose a CSV file", type=['csv'])
+    uploaded_file = st.file_uploader("Choose a file", type=['csv'])
     if uploaded_file is not None:
+        # Save the filename in a variable
         filename = uploaded_file.name
         return uploaded_file
     else:
@@ -56,20 +47,14 @@ def parse_critique(output_string: str) -> str:
         if "\n\n" in output_string:
             output_string = output_string.split("\n\n")[0]
         return output_string
-    
-    
 # Define the Streamlit app
 def main():
     api_key = st.secrets.db_credentials.password
-    st.set_page_config(page_title='InsightEngine', page_icon=':bar_chart:', layout='wide')
-
-    # Add a title and subtitle
-    st.markdown("<div class='title'>InsightEngine: Your Instant Text-to-Insights Tool</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>Get data-driven insights like never before!</div>", unsafe_allow_html=True)
-
-    # Add instructional text
-    st.markdown("<div class='instruction'>With InsightEngine, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! Simply upload your CSV file and ask any question you want about the data.</div>", unsafe_allow_html=True)
-
+    # Ask the user to specify an OpenAI API key
+    st.set_page_config(page_title='Inisght-E', page_icon=':bar_chart:', layout='wide')
+    st.title("InsightEngine: Your Instant Text-to-Insights Tool")
+    st.title("Get data-driven insights like never before!")
+    st.write("With InsightEngine, you don't need to spend months learning complex analytical software. You can become a data analyst in just a few minutes! ")
     st.write("Just load your CSV and ask your question about the data, any question you want! ")
     #api_key = st.sidebar.text_input("Enter your OpenAI API key", type="password")
 
